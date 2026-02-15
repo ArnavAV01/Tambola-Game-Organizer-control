@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambola - Organizer Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="organizer-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎱 Tambola Organizer Panel</h1>
+            <div class="header-actions">
+                <button id="soundToggleBtn" class="btn btn-icon" title="Toggle Sound Effects">
+                    🔊
+                </button>
+                <button id="openDisplayBtn" class="btn btn-secondary">
+                    📺 Open Display Screen
+                </button>
+                <button id="resetGameBtn" class="btn btn-danger">
+                    🔄 Reset Game
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Number Board -->
+            <div class="left-panel">
+                <div class="current-number-section">
+                    <h2>Current Number</h2>
+                    <div id="currentNumber" class="current-number">--</div>
+                    <button id="callNumberBtn" class="btn btn-primary btn-large">
+                        📢 Call Next Number
+                    </button>
+                    <div class="auto-call-section">
+                        <label>
+                            <input type="checkbox" id="autoCallToggle"> Auto Call
+                        </label>
+                        <select id="autoCallSpeed">
+                            <option value="3000">Slow (3s)</option>
+                            <option value="2000" selected>Normal (2s)</option>
+                            <option value="1000">Fast (1s)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="number-board">
+                    <h3>Number Board</h3>
+                    <div id="numberGrid" class="number-grid">
+                        <!-- Numbers 1-90 will be generated here -->
+                    </div>
+                </div>
+
+                <div class="called-numbers">
+                    <h3>Called Numbers (<span id="calledCount">0</span>/90)</h3>
+                    <div id="calledNumbersList" class="called-list"></div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Winners & Participants -->
+            <div class="right-panel">
+                <!-- Winners Section -->
+                <div class="winners-section">
+                    <h2>🏆 Winners</h2>
+                    <div class="winner-categories">
+                        <!-- Early Five (1 winner) -->
+                        <div class="winner-card" data-category="earlyFive">
+                            <span class="winner-label">Early Five</span>
+                            <div class="winner-slots">
+                                <div class="winner-slot" data-position="1">
+                                    <span class="slot-label gold">1st</span>
+                                    <span id="winner-earlyFive-1" class="winner-name">Waiting...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Top Line (2 winners) -->
+                        <div class="winner-card" data-category="topLine">
+                            <span class="winner-label">Top Line</span>
+                            <div class="winner-slots">
+                                <div class="winner-slot" data-position="1">
+                                    <span class="slot-label gold">1st</span>
+                                    <span id="winner-topLine-1" class="winner-name">Waiting...</span>
+                                </div>
+                                <div class="winner-slot" data-position="2">
+                                    <span class="slot-label silver">2nd</span>
+                                    <span id="winner-topLine-2" class="winner-name">Waiting...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Middle Line (2 winners) -->
+                        <div class="winner-card" data-category="middleLine">
+                            <span class="winner-label">Middle Line</span>
+                            <div class="winner-slots">
+                                <div class="winner-slot" data-position="1">
+                                    <span class="slot-label gold">1st</span>
+                                    <span id="winner-middleLine-1" class="winner-name">Waiting...</span>
+                                </div>
+                                <div class="winner-slot" data-position="2">
+                                    <span class="slot-label silver">2nd</span>
+                                    <span id="winner-middleLine-2" class="winner-name">Waiting...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bottom Line (2 winners) -->
+                        <div class="winner-card" data-category="bottomLine">
+                            <span class="winner-label">Bottom Line</span>
+                            <div class="winner-slots">
+                                <div class="winner-slot" data-position="1">
+                                    <span class="slot-label gold">1st</span>
+                                    <span id="winner-bottomLine-1" class="winner-name">Waiting...</span>
+                                </div>
+                                <div class="winner-slot" data-position="2">
+                                    <span class="slot-label silver">2nd</span>
+                                    <span id="winner-bottomLine-2" class="winner-name">Waiting...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Corners (2 winners) -->
+                        <div class="winner-card" data-category="corners">
+                            <span class="winner-label">Four Corners</span>
+                            <div class="winner-slots">
+                                <div class="winner-slot" data-position="1">
+                                    <span class="slot-label gold">1st</span>
+                                    <span id="winner-corners-1" class="winner-name">Waiting...</span>
+                                </div>
+                                <div class="winner-slot" data-position="2">
+                                    <span class="slot-label silver">2nd</span>
+                                    <span id="winner-corners-2" class="winner-name">Waiting...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Full House (3 winners) - Grand Prize -->
+                        <div class="winner-card full-house" data-category="fullHouse">
+                            <span class="winner-label">🎯 Full House — Grand Prize</span>
+                            <div class="winner-slots">
+                                <div class="winner-slot" data-position="1">
+                                    <span class="slot-label gold">1st</span>
+                                    <span id="winner-fullHouse-1" class="winner-name">Waiting...</span>
+                                </div>
+                                <div class="winner-slot" data-position="2">
+                                    <span class="slot-label silver">2nd</span>
+                                    <span id="winner-fullHouse-2" class="winner-name">Waiting...</span>
+                                </div>
+                                <div class="winner-slot" data-position="3">
+                                    <span class="slot-label bronze">3rd</span>
+                                    <span id="winner-fullHouse-3" class="winner-name">Waiting...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Announcement Mode Control -->
+                    <div class="announcement-control">
+                        <div class="mode-toggle">
+                            <span class="mode-label">Announcement Mode:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="announceModeToggle" checked>
+                                <label for="announceModeToggle">
+                                    <span class="toggle-text auto">Auto</span>
+                                    <span class="toggle-text manual">Manual</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="pendingWinnerSection" class="pending-winner-section hidden">
+                            <div class="pending-info">
+                                <span class="pending-icon">🎉</span>
+                                <span id="pendingWinnerText">No pending winners</span>
+                            </div>
+                            <button id="showWinnerBtn" class="btn btn-success" disabled>
+                                🏆 Show Congratulations
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participants Section -->
+                <div class="participants-section">
+                    <h2>👥 Participants (<span id="participantCount">0</span>)</h2>
+                    <input type="text" id="searchParticipant" placeholder="Search participant..." class="search-input">
+                    <div id="participantsList" class="participants-list">
+                        <!-- Participants will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Participant Ticket Modal -->
+        <div id="ticketModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modalParticipantName"></h2>
+                <div id="modalTicket" class="ticket-display"></div>
+                <div id="modalProgress" class="ticket-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ticketGenerator.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

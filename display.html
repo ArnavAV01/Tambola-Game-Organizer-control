@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambola - Display Screen</title>
+    <link rel="stylesheet" href="css/display.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="display-container">
+        <!-- Header -->
+        <header class="display-header">
+            <h1>🎱 TAMBOLA</h1>
+        </header>
+
+        <!-- Main Display Area -->
+        <div class="main-display">
+            <!-- Current Number -->
+            <div class="current-number-display">
+                <div class="number-label">CURRENT NUMBER</div>
+                <div id="currentNumber" class="big-number">--</div>
+            </div>
+
+            <!-- Recent Numbers -->
+            <div class="recent-numbers">
+                <div class="recent-label">Last 5 Numbers</div>
+                <div id="recentNumbers" class="recent-list">
+                    <span class="recent-num">--</span>
+                    <span class="recent-num">--</span>
+                    <span class="recent-num">--</span>
+                    <span class="recent-num">--</span>
+                    <span class="recent-num">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Number Board -->
+        <div class="number-board-section">
+            <div id="displayNumberGrid" class="display-number-grid">
+                <!-- Numbers 1-90 will be generated here -->
+            </div>
+        </div>
+
+        <!-- Winners Section -->
+        <div class="winners-display">
+            <div class="winner-box" id="winnerEarlyFive">
+                <span class="prize-name">Early Five</span>
+                <div class="winner-names">
+                    <span class="winner-name" data-slot="1">-</span>
+                </div>
+            </div>
+            <div class="winner-box" id="winnerTopLine">
+                <span class="prize-name">Top Line</span>
+                <div class="winner-names">
+                    <span class="winner-name" data-slot="1">-</span>
+                    <span class="winner-name" data-slot="2">-</span>
+                </div>
+            </div>
+            <div class="winner-box" id="winnerMiddleLine">
+                <span class="prize-name">Middle Line</span>
+                <div class="winner-names">
+                    <span class="winner-name" data-slot="1">-</span>
+                    <span class="winner-name" data-slot="2">-</span>
+                </div>
+            </div>
+            <div class="winner-box" id="winnerBottomLine">
+                <span class="prize-name">Bottom Line</span>
+                <div class="winner-names">
+                    <span class="winner-name" data-slot="1">-</span>
+                    <span class="winner-name" data-slot="2">-</span>
+                </div>
+            </div>
+            <div class="winner-box" id="winnerCorners">
+                <span class="prize-name">Corners</span>
+                <div class="winner-names">
+                    <span class="winner-name" data-slot="1">-</span>
+                    <span class="winner-name" data-slot="2">-</span>
+                </div>
+            </div>
+            <div class="winner-box full-house" id="winnerFullHouse">
+                <span class="prize-name">🎯 Full House</span>
+                <div class="winner-names">
+                    <span class="winner-name" data-slot="1">-</span>
+                    <span class="winner-name" data-slot="2">-</span>
+                    <span class="winner-name" data-slot="3">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Winner Announcement Overlay -->
+        <div id="winnerOverlay" class="winner-overlay hidden">
+            <div class="winner-announcement">
+                <div class="confetti-container"></div>
+                <div class="winner-content">
+                    <div class="congrats-text">🎉 CONGRATULATIONS! 🎉</div>
+                    <div id="winnerNameAnnounce" class="winner-name-big"></div>
+                    <div id="winnerPrizeAnnounce" class="winner-prize"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/sounds.js"></script>
+    <script src="js/display.js"></script>
+</body>
+</html>
